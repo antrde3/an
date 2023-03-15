@@ -1,0 +1,96 @@
+package baitaplon;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class ScoreManager {
+	private ArrayList<Student> student=new ArrayList<Student>();
+
+	public void them() {
+		Student A = new Student();
+		A.setMonhoc(new Subject());
+		A.nhapthongtin();
+		A.getMonhoc().nhapdiem();
+		student.add(A);
+	}
+
+	public void printStudentList() {
+	    for (Student st : student) {
+	    	st.setMonhoc(new Subject());
+	    	System.out.println(st.xuatthongtin()+" "+ st.getMonhoc().getDiemthi()+" "+st.getMonhoc().getDiemtp());
+	    }
+	 }
+	
+	public int getsize() {
+		return student.size();
+	}
+	
+	public void sapxep() {  // sắp xếp theo tên
+		
+		java.util.Collections.sort(student, (s1, s2) -> s1.getHoTen().compareToIgnoreCase(s2.getHoTen()));
+	    
+	}
+	
+	public void tim_hoten() {  
+		Scanner sc=new Scanner(System.in);
+		Student A=null;
+		System.out.println("nhập tên sinh viên cần tìm:");
+		String hoten = sc.nextLine();
+		for(int i=0;i<student.size();i++) {
+			if(student.get(i).getHoTen().equals(hoten)== true ) {
+				A=student.get(i);
+				if(A!=null) {
+					A.xuatthongtin();
+					A.getMonhoc().xuatdiem();
+					
+				}
+			}
+			else {
+				System.out.println("tên sinh viên không tồn tại:");
+			}
+			
+		}
+	}
+	
+	public void tim_masv() {  
+		Scanner sc=new Scanner(System.in);
+		Student A=null;
+		System.out.println("nhập tên sinh viên cần tìm:");
+		String masv = sc.nextLine();
+		for(int i=0;i<student.size();i++) {
+			if(student.get(i).getMasv().equals(masv)==true ) {
+				A=student.get(i);
+				break;
+			}
+			
+		}
+		if(A!=null) {
+			A.xuatthongtin();
+			A.getMonhoc().xuatdiem();
+		}
+		else {
+			System.out.println("tên sinh viên không tồn tại:");
+		}
+			
+	}
+	
+	public void xoa_masv() {  
+		Scanner sc=new Scanner(System.in);
+		Student A=null;
+		System.out.println("nhập mã sinh viên cần xóa:");
+		String masv = sc.nextLine();
+		for(int i=0;i<student.size();i++) {
+			if(student.get(i).getMasv().equals(masv)==true ) {
+				A=student.get(i);
+				break;
+			}
+			
+		}
+		if(A!=null) {
+			student.remove(A);
+		}
+		else {
+			System.out.println("không tồn tại mã sinh viên :\n");
+		}
+	}
+	
+}
